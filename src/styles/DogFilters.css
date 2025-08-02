@@ -1,0 +1,19 @@
+.filters-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.breed-select {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  min-width: 200px;
+}
+
+.availability-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

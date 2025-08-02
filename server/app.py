@@ -65,7 +65,26 @@ def get_dog(id: int) -> tuple[Response, int] | Response:
     
     return jsonify(dog)
 
-## HERE
+@app.route('/api/breeds', methods=['GET'])
+def get_breeds() -> Response:
+    # Query all breeds from the database
+    breeds_query = db.session.query(Breed).all()
+    breeds_list = [{'id': breed.id, 'name': breed.name} for breed in breeds_query]
+    return jsonify(breeds_list)
+
+def validate_dog_age(age: int) -> None:
+    """
+    Validates that the dog's age is between 0 and 20 (inclusive).
+
+    Args:
+        age (int): The age of the dog.
+
+    Raises:
+        ValueError: If age is not between 0 and 20.
+    """
+    if not (0 <= age <= 20):
+        raise ValueError("Dog age must be between 0 and 20.")
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5100) # Port 5100 to avoid macOS conflicts
